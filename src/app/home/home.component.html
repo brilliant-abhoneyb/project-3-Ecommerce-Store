@@ -1,0 +1,117 @@
+<app-navbar></app-navbar>
+<main class="container">
+    <!-- Banner -->
+    <div id="carouselAutoplaying" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active" *ngFor="let data of bannerImgs">
+                <img src="{{data.img}}" class="carousel-inner-image">
+            </div>
+        </div>
+
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselAutoplaying"
+            data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselAutoplaying"
+            data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+    <!-- categoris -->
+    <div class="categories">
+        <div class="categories__content">
+            <div class="categories__content-item" *ngFor="let data of getCategorisData">
+                <a [routerLink]="['product-page',data.code]" class="categories__content-item-link">
+                    <img src="{{data.img}}" class="categories__content-item-image">
+                    <h4 class="categories__content-item-name">{{data.name}}</h4>
+                </a>
+            </div>
+        </div>
+    </div>
+    <!-- products  -->
+    <div class="products">
+        <div class="products__content">
+            <p class="products__content-text">
+                <a class="products__content-link" [routerLink]="['/product-page','laptops']">Best laptops</a>
+                <a class="products__content-link" [routerLink]="['/product-page','laptops']"><i class="bi bi-arrow-right-circle"></i></a>
+            </p>
+            
+            <div class="products__content-items-parent">
+                <div class="products__content-items"  *ngFor="let data of getApplianceProductData;index as i">
+                    <a [routerLink]="['/product-detail',data.pdCategory,data.pdId]" class="products__content-item-link">
+                        <div class="products__content-item" *ngIf="i<=3">
+                            <div class="products__content-item-image-content">
+                            <img src="{{data.pdImg}}" class="products__content-item-image">
+                            </div>
+                            <h4 class="products__content-item-name">{{data.pdName}}</h4>
+                        </div>
+                    </a>    
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="products">
+        <div class="products__content">
+            <p class="products__content-text">
+                <a class="products__content-link" [routerLink]="['/product-page','phones']">Best phones</a>
+                <a class="products__content-link" [routerLink]="['/product-page','phones']"><i class="bi bi-arrow-right-circle"></i></a>
+            </p>
+
+            <div class="products__content-items-parent">
+                <div class="products__content-items"  *ngFor="let data of getPhoneProductData;index as i">
+                    <a [routerLink]="['/product-detail',data.pdCategory,data.pdId]" class="products__content-item-link">
+                        <div class="products__content-item" *ngIf="i<=3">
+                            <div class="products__content-item-image-content">
+                            <img src="{{data.pdImg}}" class="products__content-item-image">
+                            </div>
+                            <h4 class="products__content-item-name">{{data.pdName}}</h4>
+                        </div>
+                    </a>    
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+<footer class="footer">
+    <div class="footer__content">
+        <div class="footer__brand">
+            <div class="footer__socials">
+                <a href="#" class="footer__social"><i class="fa-brands fa-facebook-f"></i></a>
+                <a href="#" class="footer__social"><i class="fa-brands fa-twitter"></i></a>
+                <a href="#" class="footer__social"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#" class="footer__social"><i class="fa-brands fa-youtube"></i></a>
+            </div>  
+
+            <div class="footer__newspaper">
+                <div class="footer__newspaper-content">
+                    <input type="mail" class="footer__newspaper-input" placeholder="Email">
+                    <button type="button" class="footer__newspaper-button"><i class="fa fa-location-arrow"></i></button>
+                </div>
+            </div>
+        </div>
+        <div class="footer__links">
+            <h4 class="footer__link-heading">About</h4>
+            <h4 class="footer__link-heading">Products</h4>
+            <h4 class="footer__link-heading">Help</h4>
+
+            <a href="#" class="footer__link">About us</a>
+            <a href="#" class="footer__link">Laptops</a>
+            <a href="#" class="footer__link">Account & Billing</a>
+
+            <a href="#" class="footer__link">Pricing plans</a>
+            <a href="#" class="footer__link">Phones</a>
+            <a href="#" class="footer__link">Plans & Pricing</a>
+
+            <a href="#" class="footer__link">Contacts</a>
+            <a href="#" class="footer__link">Earphones</a>
+            <a href="#" class="footer__link">Cartoons</a>
+            <a href="#" class="footer__link">Supported devices</a>
+
+            <a href="#" class="footer__link">Watches</a>
+            <a href="#" class="footer__link">Streaming Library</a>
+      </div>
+    </div>
+</footer>

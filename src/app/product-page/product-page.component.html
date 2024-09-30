@@ -1,0 +1,32 @@
+<app-navbar></app-navbar>
+<main class="container">
+    <div class="products">
+        <div class="products__info">
+        <!-- filter  -->
+            <div class="products__filter-parameter">
+                <p class="products__filter-parameter-title">Filter</p>
+
+                <div class="products__filter-field">
+                    <select class="products__filter-field-select" (change)="filterSelect($event)">
+                        <option value="all">All</option>
+                        <option *ngFor="let data of getSubCategoryOption" value="{{data.subcategories}}">
+                            {{data.subcategories}}</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <!-- product content  -->
+        <div class="products__list-content">
+            <div class="products__list-item" *ngFor="let data of filterProductData">
+                <img src="{{data.pdImg}}" class="products__list-item-image">
+                
+                <div class="products__list-item-info">
+                    <h4 class="products__list-item-info-title">{{data.pdName}}</h4>
+                    <p class="products__list-item-info-desc">{{data.pdDesc}}</p>
+                    <p class="products__list-item-info-price"><span class="fw-medium"><i class="bi bi-currency-dollar"></i></span> {{data.pdPrice | number}}</p>
+                    <a class="products__list-item-info-button" [routerLink]="['/product-detail',data.pdCategory,data.pdId]">view product <i class="bi bi-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

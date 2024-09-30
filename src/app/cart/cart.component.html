@@ -1,0 +1,85 @@
+<app-navbar [cartCount]="totalCart"></app-navbar>
+<main class="container">
+    <div class="cart__empty" *ngIf="totalCart == 0">
+        <h4>Cart is empty</h4>
+    </div>
+    <!-- cart content  -->
+    <div class="cart__content" *ngIf="totalCart > 0">
+        <div class="cart__items">
+            <div class="cart__item" *ngFor="let data of getCartData">
+              <img src="{{data.pdImg}}" class="cart__item-image">
+
+              <div class="cart__item-cta">
+                <h5 class="cart__item-name">{{data.pdName}}</h5>
+                <p class="cart__item-price"><span><i class="bi bi-currency-dollar"></i></span>{{data.pdPrice | number}}</p>
+                
+                <div class="cart__item-buttons">
+                  <div class="cart__item-quantity">
+                    <button class="cart__item-quantity-button" [disabled]="data.plusMinusCounter > 1 ? false :true" (click)="plusMinusCount(data,'minus')">-</button>
+                    <input type="number" class="cart__item-quantity-button-count" value="{{data.plusMinusCounter}}" disabled>
+                    <button class="cart__item-quantity-button" [disabled]="data.plusMinusCounter < 5 ? false :true " (click)="plusMinusCount(data,'plus')">+</button>   
+                  </div>
+                  <button class="cart__item-button" (click)="removeCart(data)"><i class="bi bi-trash"></i>Remove</button>
+                </div>
+              </div>
+            </div>
+        </div>
+          <!-- price content  -->
+        <div class="cart__summary">
+          <div class="cart__summary-content">
+              <h5 class="cart__summary-content-title">Price Details</h5>
+              <hr>
+              <p class="cart__summary-content-overview">
+                  <span class="cart__summary-content-overview-price">Price per {{totalCart}} item</span>
+                  <span class="cart__summary-content-overview-price-value"><i class="bi bi-currency-dollar"></i> {{totalAmount | number}}</span>
+              </p>
+              <div class="clearfix"></div>
+              <p class="cart__summary-content-overview">
+                  <span class="cart__summary-content-overview-price">Delivery</span>
+                  <span class="cart__summary-content-overview-price-value">Free</span>
+              </p>
+              <hr>
+              <p class="cart__summary-content-overview cart__summary-content-overview-total">
+                  <span class="cart__summary-content-overview-price">Total Amount</span>
+                  <span class="cart__summary-content-overview-price-value"> <i class="bi bi-currency-dollar"></i> {{totalAmount | number}}</span>
+              </p>
+              <button type="button" class="cart__summary-button" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@getbootstrap">Confirm order <i class="bi bi-arrow-right"></i></button>
+          </div>
+      </div>
+    </div>
+    <!-- modal  -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal__header">
+              <h1 class="modal__title" id="exampleModalLabel">Confirm Order</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <hr>
+            <div class="modal__body">
+              <form class="modal__items">
+                <div class="modal__item">
+                  <label for="recipient-name" class="col-form-label">Enter Email Id</label>
+                  <input type="text" class="modal__form-control" id="recipient-name">
+                </div>
+                <div class="modal__item">
+                  <label for="message-text" class="col-form-label">Enter Address</label>
+                  <textarea class="modal__form-control" id="message-text"></textarea>
+                </div>
+                <div class="modal__item modal__item-radio">
+                    <input type="radio" checked> <label> Cash on delivery </label>
+                  </div>
+                 <div class="modal__item">
+                    <h5>Total Amount : {{this.totalAmount | number}}</h5>
+                 </div> 
+              </form>
+            </div>
+            <hr>
+            <div class="modal__footer">
+              <button type="button" class="modal__button modal__button-close" data-bs-dismiss="modal">Close</button>
+              <button type="button" class="modal__button modal__button-proceed" data-bs-dismiss="modal" (click)="orderClick()">Order Now</button>
+            </div>
+          </div>
+        </div>
+      </div>
+</main>

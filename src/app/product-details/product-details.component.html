@@ -1,0 +1,14 @@
+<app-navbar></app-navbar>
+<main class="product__description-container">
+    <div class="product__description-content">
+        <img src="{{getProductDetails.pdImg}}" class="product__description-image">
+
+        <div class="product__description-cta">
+                <h4 class="product__description-name">{{getProductDetails.pdName}}</h4>
+                <p class="product__description-text">{{getProductDetails.pdDesc}}</p>
+                <p class="product__description-price"><i class="bi bi-currency-dollar"></i>{{getProductDetails.pdPrice | number}}</p>
+                <button *ngIf="!inCart" class="product__description-button" (click)="addCart(getProductDetails)"><i class="bi bi-bag"></i> Add to Cart </button>
+                <a *ngIf="inCart" class="product__description-button" routerLink="/cart"><i class="bi bi-bag"></i> Add to Cart </a>
+        </div>
+    </div>
+</main>
